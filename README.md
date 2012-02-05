@@ -1,7 +1,7 @@
 Microprojects
 =============
 
-This repo is a collection of small projects, taskas and such which probably don't deserve their own repository.
+This repo is a collection of small projects,  which don't yet deserve their own repository. I hope this will grow considerably with time
 
 List of projects
 ----------------
