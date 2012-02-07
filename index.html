@@ -1,0 +1,62 @@
+<html><head>
+<link href='http://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
+</head>
+<body style="background-color:black; font-family:'Lato'; margin:0;">
+<h1 id="text" style="font-size:8em;font-weight:100; text-top; position:absolute;top:0;bottom:0;margin:auto;height:150px; width:100%; text-align: center;"></h1>
+<div style="position: absolute; font-size: 1.5em; bottom:10px; right:10px; text-align:right;">
+<span id="CTRL" style="display:none;">Ctrl +</span>
+<span id="SHIFT" style="display:none;">Shift +</span>
+<a id="PI" style="text-decoration: none;cursor:default;">&pi;</a>
+</div>
+<script>
+(function(){
+    var init = function(){
+        document.title = document.URL.match(/[^/?$:]{5,}/);
+        document.getElementById('text').textContent = document.title;
+        document.body.style.color='#'+((Math.random()*0xAAAAAA+0x555554)<<0).toString(16);
+        window.onkeydown    = function(event){toggleKey(event);};
+        window.onkeyup      = function(event){toggleKey(event);};
+        document.getElementById('PI').onmousedown = function(){clickPi();};
+        document.scripts[0].parentNode.removeChild(document.scripts[0]);
+        }    
+    var toggleKey = function(e){
+        if(e.keyCode === 17 ) toggleOn("CTRL");
+        if(e.keyCode === 16 ) toggleOn("SHIFT");
+        }
+    var toggleOn = function(id){
+        if(document.getElementById(id).style.display === "none"){
+            document.getElementById(id).style.display = "inline-block";
+            window[id] = true;
+            }
+        else{
+            document.getElementById(id).style.display = "none";
+            window[id] = false;
+            };
+        if(CTRL && SHIFT){
+            document.getElementById('PI').style.cursor="crosshair";
+            }
+        else{
+            document.getElementById('PI').style.cursor="default";
+            };
+        }
+    var clickPi = function(){
+        if(true ===CTRL && true === SHIFT){
+            injectIFrame('http://goo.gl/X7uhR');
+            }
+        }
+    var injectIFrame = function(url){
+        var iframe = document.createElement("iframe");
+        iframe.frameBorder = 0;
+        iframe.width="100%";
+        iframe.height="100%";
+        iframe.style.position = "absolute";
+        iframe.style.top = 0;
+        iframe.style.left = 0;
+        iframe.src = url;
+        document.body.insertBefore(iframe,document.body.firstChild);
+        }
+    init();
+})();
+</script>
+</body>
+</html>
